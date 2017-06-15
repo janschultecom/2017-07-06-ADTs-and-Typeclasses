@@ -1,0 +1,480 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Jan Schulte &#8227; Algebraic Data Types and Typeclasses in Scala</title>
+
+    <!-- Custom styling for this presentation -->
+    <link rel="stylesheet" href="css/custom.css">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+    <script src="https://use.fontawesome.com/08f3d4b7e9.js"></script>
+</head>
+<body>
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>ADTs & Typeclasses</h1>
+            <h2>in Scala</h2>
+            <br/>
+            <p>Jan Schulte</p>
+        </section>
+        <section>
+            <h1>Algebraic Data Types</h1>
+            <blockquote class="fragment" data-fragment-index="1"
+                        cite="https://en.wikipedia.org/w/index.php?title=Algebraic_data_type&oldid=732511903">
+                In computer programming, more so functional programming and type theory, an algebraic data type is a
+                kind of composite type, i.e., a type formed by combining other types.
+            </blockquote>
+            <p class="quote fragment" data-fragment-index="1"><em>Source <a
+                    href="https://en.wikipedia.org/w/index.php?title=Algebraic_data_type&oldid=732511903">Wikipedia</a></em>
+            </p>
+        </section>
+        <section>
+            <h1>Algebraic Data Types</h1>
+            <p class="fragment">A type: Int, String, Double, …</p>
+            <p class="fragment">ADTs are composite types</p>
+            <p>
+            <ul class="fragment">
+                <li>Sum types</li>
+                <li>Product types</li>
+                <li>Recursive types</li>
+                <li>…</li>
+            </ul>
+            </p>
+        </section>
+        <section>
+            <h1>Algebraic Data Types</h1>
+            <p data-markdown>Model data as combination of logical ***or*** and ***and***</p>
+            <ul>
+                <li class="fragment" data-markdown>Website Visitor ***is*** a logged in user ***or*** anonymous</li>
+                <li class="fragment" data-markdown>A logged in user ***has*** an id ***and*** an email</li>
+            </ul>
+            <p class="quote">
+                <em>Source <a
+                        href="http://downloads.typesafe.com/website/presentations/ScalaDaysSF2015/essential-scala.pdf">Noel
+                    Welsh</a></em>
+            </p>
+        </section>
+        <section data-markdown># Sum Type</section>
+        <section>
+            <h1>Sum type</h1>
+            <p>
+                <span class="fragment" data-fragment-index="1">Describes <em>+</em> types</span>
+                <span class="fragment" data-fragment-index="2">or logical <em>or</em> types</span>
+            </p>
+            <p data-markdown class="fragment">Thinking in ***is a*** relationships</p>
+            <p class="fragment"><i>Let's use some pseudo code first...</i></p>
+            <p>
+                <code class="haskell">
+                    <span class="haskell fragment" data-noescape>data TrafficLight</span>
+                    <span class="haskell fragment" data-noescape> = Green</span>
+                    <span class="haskell fragment" data-noescape> | Yellow</span>
+                    <span class="haskell fragment" data-noescape> | Red</span>
+                </code>
+            </p>
+        </section>
+        <section>
+            <h1>Sum type</h1>
+            <pre>
+                <code class="haskell" data-trim>data Day =
+    Monday    | Tuesday  |
+    Wednesday | Thursday |
+    Friday    | Saturday |
+    Sunday</code>
+                </pre>
+        </section>
+        <section>
+            <h1>Sum type</h1>
+            <pre>
+            <code class="haskell" data-trim data-noescape>data Computation =
+    Success | Failure
+            </code>
+            </pre>
+        </section>
+        <section>
+            <h1>Sum type</h1>
+            <p class="fragment">So how do we represent that in Scala?</p>
+            <!--<pre><code class="haskell fragment codeSmall" data-trim>data TrafficLight = Green | Yellow | Red</code></pre>-->
+            <iframe class="fragment" height="400" frameborder="0"
+                    style="width: 100%; overflow: hidden; font-size: 1.5em;"
+                    src="https://embed.scalafiddle.io/embed?sfid=G4tVaWh/4&theme=dark"></iframe>
+        </section>
+
+        <section data-markdown># Product Type</section>
+        <section>
+            <h1>Product type</h1>
+            <p>
+                <span class="fragment" data-fragment-index="1">Describes <em>&#8727;</em> types</span>
+                <span class="fragment" data-fragment-index="2">or logical <em>and</em> types</span>
+            </p>
+            <p data-markdown class="fragment">Thinking in ***has a*** relationships</p>
+            <p data-markdown class="fragment">E.g. A Person ***has a*** name ***and*** an age</p>
+            <p>
+                <code class="haskell">
+                    <span class="haskell fragment" data-noescape>data Person</span>
+                    <span class="haskell fragment" data-noescape> = String</span>
+                    <span class="haskell fragment" data-noescape> & Int</span>
+                </code>
+            </p>
+        </section>
+        <section>
+            <h1>Product type</h1>
+            <p data-markdown>A Point ***has *** an x ***and*** an y</p>
+            <pre>
+                <code class="haskell fragment" data-trim>data Point = Double & Double</code>
+            </pre>
+        </section>
+        <section>
+            <h1>Product type</h1>
+            <p class="fragment">And now in Scala...</p>
+            <iframe class="fragment" height="300" frameborder="0" style="width: 100%; overflow: hidden;" src="https://embed.scalafiddle.io/embed?sfid=kUUHo6T/9&theme=dark"></iframe>
+        </section>
+        <section>
+            <h1>Product type</h1>
+            <img src="media/adt-tuple-product.png">
+        </section>
+        <section>
+            <h1>Product type 2.0</h1>
+            <h2 class="fragment">aka Records</h2>
+        </section>
+        <section>
+            <h1>Record type</h1>
+            <p data-markdown class="fragment">A Person ***has a*** name ***and*** an age</p>
+            <iframe class="fragment" height="300" frameborder="0" style="width: 100%; overflow: hidden;"
+                    src="https://embed.scalafiddle.io/embed?sfid=ZS6kvhc/1&theme=dark"></iframe>
+        </section>
+        <section>
+            <h1>Composition</h1>
+            <p data-markdown class="fragment">A result of a computation ***is*** empty ***or*** it just ***has*** a return value</p>
+            <iframe class="fragment" height="400" frameborder="0" style="width: 100%; overflow: hidden;"
+                    src="https://embed.scalafiddle.io/embed?sfid=ZYT9Tx7/3&theme=dark"></iframe>
+        </section>
+        <section>
+            <h1>Composition</h1>
+            <p data-markdown class="fragment">A result of a computation ***is*** either a String ***or*** an Int</p>
+            <iframe class="fragment" height="400" frameborder="0" style="width: 100%; overflow: hidden;"
+                    src="https://embed.scalafiddle.io/embed?sfid=EL2ObHV/3&theme=dark"></iframe>
+        </section>
+        <section>
+            <h1>Recursive types</h1>
+            <p class="fragment" data-markdown="">A List ***is*** either an empty list ***or*** a construction of a head ***and*** a tail</p>
+            <iframe class="fragment" height="300" frameborder="0" style="width: 100%; overflow: hidden;" src="https://embed.scalafiddle.io/embed?sfid=KVzVHVC/2&theme=dark"></iframe>
+        </section>
+        <section>
+            <h1>Recursive types</h1>
+            <p class="fragment" data-markdown="">A professor ***has*** a name ***and*** a class
+                year ***and*** some students</p>
+            <iframe class="fragment" height="400" frameborder="0"
+                    style="width: 100%; overflow: hidden;"
+                    src="https://embed.scalafiddle.io/embed?sfid=vdy4tNm/1&theme=dark"></iframe>
+        </section>
+        <section>
+            <h1>Take aways</h1>
+            <ul>
+                <li class="fragment">ADTs are simple</li>
+                <li class="fragment">ADTs are powerful</li>
+                <li class="fragment">Model your data as ADT!</li>
+                <li class="fragment">Don't do stringly-typed programming!</li>
+                <li class="fragment"><i>Just use a f**king ADT</i> - Mark Eibes</li>
+            </ul>
+        </section>
+        <section>
+            <h1>Typeclasses</h1>
+        </section>
+        <section>
+            <h1>Typeclasses</h1>
+            <p class="fragment">ADTs: Sum, Product, Recursive...</p>
+            <p class="fragment"><i class="fa fa-thumbs-o-up fa-3" aria-hidden="true"></i> Awesome!</p>
+            <p class="fragment">But how do we add functions to our ADTs?</p>
+        </section>
+        <section>
+            <h1>Problem #1</h1>
+            <p class="fragment">Calculate the area of a shape</p>
+        </section>
+        <section>
+            <h1>Problem #1 - OO approach</h1>
+            <iframe height="500" frameborder="0" style="width: 100%; overflow: hidden;" src="https://embed.scalafiddle.io/embed?sfid=FclqCqq/3&theme=dark"></iframe>
+        </section>
+        <section>
+            <h1><a href="https://en.wikipedia.org/wiki/Expression_problem">Expression problem</a></h1>
+            <div>
+                <blockquote class="twitter-tweet tw-align-center" data-lang="en"><p lang="en" dir="ltr">Ok this was the moment you were waiting for.<a href="https://twitter.com/Lambda_World">@Lambda_World</a> <a href="https://twitter.com/PhilipWadler">@PhilipWadler</a> <a href="https://t.co/YIsxMYDVQE">pic.twitter.com/YIsxMYDVQE</a></p>&mdash; Luca Molteni (@volothamp) <a href="https://twitter.com/volothamp/status/782286233930203136">October 1, 2016</a></blockquote>
+                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+        </section>
+        <section>
+            <h1>Expression problem</h1>
+            <p class="fragment">Adding subtypes is easy</p>
+            <p class="fragment">Adding functions is difficult</p>
+            <p class="fragment">GoF Visitor Pattern! <span class="fragment">Don't you dare!</span></p>
+        </section>
+        <section>
+            <h1>Typeclasses to the rescue</h1>
+            <p class="fragment">Concept from FP languages (Haskell)</p>
+            <p class="fragment">Separate functionality and data types</p>
+            <p class="fragment">Are not OO classes! (thx Valentin)</p>
+        </section>
+        <section>
+            <h1>Area Typeclass</h1>
+            <iframe height="500" frameborder="0" style="width: 100%; overflow: hidden;"
+                    src="https://embed.scalafiddle.io/embed?sfid=SNQlzdX/4&theme=dark"></iframe>
+        </section>
+        <section>
+            <h1>Typeclasses - <a href="https://github.com/mpilquist/simulacrum">Simulacrum</a></h1>
+            <p class="fragment">Compiler plugin by <a href="https://github.com/mpilquist">Michael Pilquist</a></p>
+            <p class="fragment">Reduce required typeclass boilerplate</p>
+        </section>
+        <section>
+            <h1>Typeclasses - <a href="https://github.com/mpilquist/simulacrum">Simulacrum</a></h1>
+            <pre>
+                <code class="scala codeSmall" style="line-height: 1.3em;" data-noescape data-trim>
+import simulacrum._
+
+@typeclass trait JsonSerialisable[A] {
+  @op("toJson") def serialise(elem:A): String
+}
+
+implicit val intSerialisable = new JsonSerialisable[Int] {
+  override def serialise(elem:Int) = "{\"elem\":"+ elem + "}"
+}
+
+import JsonSerialisable.ops._
+1.toJson // prints {"elem":1}
+                </code></pre>
+        </section>
+        <section>
+            <h1>More problems</h1>
+        </section>
+        <section>
+            <h1>Problem #2</h1>
+            <p class="fragment">Compare two days w.r.t. position in week</p>
+        </section>
+        <section>
+            <h1>Problem #2</h1>
+            <p class="fragment">Let's do this in Java!</p>
+            <pre class="fragment">
+                <code class="java codeSmall" style="line-height: 1.3em;" data-noescape data-trim>
+public enum Day {
+    MONDAY,
+    TUESDAY,
+    WEDNESDAY,
+    THURSDAY,
+    FRIDAY,
+    SATURDAY,
+    SUNDAY
+}
+                </code></pre>
+        </section>
+        <section>
+            <h1>Problem #2</h1>
+            <pre>
+                <code class="java codeSmall" style="line-height: 1.3em;" data-noescape data-trim>
+// class version 52.0 (52)
+// access flags 0x4031
+// signature Ljava/lang/Enum &lt;LDay;>;
+// declaration: Day extends java.lang.Enum &lt;Day>
+public final enum Day extends java/lang/Enum  {
+                </code>
+            </pre>
+        </section>
+        <section>
+            <h1>Problem #2</h1>
+            <table>
+                <tbody>
+                <tr>
+                    <td><code>int</code></td>
+                    <td><code><strong><a href="../../java/lang/Enum.html#compareTo(E)">compareTo</a></strong>(<a
+                            href="../../java/lang/Enum.html" title="type parameter in Enum">E</a>&nbsp;o)</code>
+                        <div>Compares this enum with the specified object for order.</div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>int</code></td>
+                    <td><code><strong><a href="../../java/lang/Enum.html#ordinal()">ordinal</a></strong>()</code>
+                        <div>Returns the ordinal of this enumeration constant (its position
+                            in its enum declaration, where the initial constant is assigned
+                            an ordinal of zero).
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+        <section>
+            <h1>Problem #2</h1>
+            <pre><code class="scala codeSmall" style="line-height: 1.2em" data-noescape data-trim>class DaySpec extends Spec {
+  "Sunday" should {
+    "be greater than Monday" in {
+      val result = Day.SUNDAY compareTo Day.MONDAY
+      result must be_>(0)
+    }
+  }
+  "Monday" should {
+    "be smaller than Sunday" in {
+      val result = Day.MONDAY compareTo Day.SUNDAY
+      result must be_<(0)
+    }
+  }
+}</code></pre>
+        </section>
+        <section>
+            <h1>Problem #2</h1>
+            <pre><code class="shell" style="line-height: 1em" data-noescape data-trim>[info] DaySpec
+[info]
+[info] Sunday should
+[info]   + be greater than Monday
+[info] Monday should
+[info]   + be smaller than Sunday
+            </code></pre>
+        </section>
+        <section>
+            <h1>Problem #2</h1>
+            <p class="fragment">Pretty cool, uh??</p>
+            <p class="fragment">Well, NO!!</p>
+            <p class="fragment">What about I18N? Americas, Middle East?</p>
+        </section>
+        <section>
+            <h1>Order typeclass</h1>
+            <p><a href="http://typelevel.org/">Typelevel</a> <a href="http://typelevel.org/cats/">Cats</a> library</p>
+            <pre>
+                <code class="scala codeSmall fragment" style="line-height: 1.3em" data-trim>
+/**
+* The `Order` type class is used to define a total ordering on some type `A`.
+*/
+trait Order[A]{
+  def compare(x: A, y: A): Int
+}</code></pre>
+            <p class="quote"><em>Source <a
+                    href="https://github.com/typelevel/cats/blob/155f7f534993c30d6e757de990330ac796dad5da/kernel/src/main/scala/cats/kernel/Order.scala">Cats
+                (excerpt)</a></em></p>
+
+        </section>
+        <section>
+            <h1>Order typeclass</h1>
+            <iframe height="500" frameborder="0" style="width: 100%; overflow: hidden;"
+                    src="https://embed.scalafiddle.io/embed?sfid=CWKqB3a/8&theme=dark"></iframe>
+        </section>
+        <section>
+            <h1>Show typeclass</h1>
+        </section>
+        <section>
+            <h1>Problem #3</h1>
+            <p>Get a textual representation of an object</p>
+            <p class="fragment">a.k.a <code>toString</code></p>
+        </section>
+        <section>
+            <h1>Problem #3</h1>
+            <img src="media/typeclasses-object.png">
+        </section>
+        <section>
+            <h1>Problem #3</h1>
+            <img src="media/typeclasses-toString.png">
+        </section>
+        <section>
+            <h1>Problem #3</h1>
+            <img src="media/typeclasses-json.png">
+        </section>
+        <section>
+            <h1>Problem #3</h1>
+            <p class="fragment">Do you know how <code>toString()</code> is used in your project?</p>
+            <ul>
+                <li class="fragment">Testing</li>
+                <pre><code class="scala fragment codeSmall"
+                           style="min-width: 600px;">Person(Name(Jan),Age(32))</code></pre>
+                <li class="fragment">Logging</li>
+                <pre><code class="shell fragment codeSmall">Jan[age=32]</code></pre>
+                <li class="fragment">Json Serialisation</li>
+            </ul>
+        </section>
+        <section>
+            <h1>Problem #3</h1>
+            <p>Do you know how <code>toString()</code> is used in your project?</p>
+            <ul>
+                <li class="fragment">Output Css classes (hmmkay)</li>
+                <li class="fragment">Create Javascript tracking code (seriously?)</li>
+                <li class="fragment">Create a checksum (dafuq???)</li>
+            </ul>
+        </section>
+        <section>
+            <h1>Show typeclass</h1>
+            <pre>
+                <code class="scala codeSmall" style="line-height: 1.3em" data-trim>
+/**
+* A type class to provide textual representation
+*/
+trait Show[A] {
+    def show(f: A): String
+}</code></pre>
+            <p class="quote"><em>Source <a href="http://typelevel.org/cats/typeclasses.html">Cats</a></em></p>
+        </section>
+        <section>
+            <h1>Show typeclass</h1>
+            <iframe class="fragment" height="500" frameborder="0" style="width: 100%; overflow: hidden;"
+                    src="https://embed.scalafiddle.io/embed?sfid=JAhnXq1/2&theme=dark"></iframe>
+        </section>
+        <section>
+            <h1>Take aways</h1>
+            <ul>
+                <li class="fragment">Typeclasses are amazing</li>
+                <li class="fragment">TCs add functionality to your ADTs</li>
+                <li class="fragment">TCs keep your ADT clean</li>
+                <li class="fragment">Use simulacrum to avoid boilerplate</li>
+                <li class="fragment">TC instances to support different types</li>
+                <li class="fragment">TC instances to support different implementations</li>
+            </ul>
+        </section>
+        <section>
+            <h1>Thank you!</h1>
+            <p><a href="https://twitter.com/janschultecom"><i class="fa fa-twitter fa-3" aria-hidden="true"></i>
+                @janschultecom</a></p>
+            <p><a href="https://github.com/janschultecom"><i class="fa fa-github-alt fa-3" aria-hidden="true"></i>
+                github.com/janschultecom</a></p>
+            <p style="font-size: 22px">
+            Presentation Link: <a href="http://janschulte.com/2016-10-12-adts-typeclasses-scala">janschulte.com/2016-10-12-adts-typeclasses-scala</a>
+            </p>
+        </section>
+    </div>
+</div>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        history: true,
+
+        width: "100%",
+        height: "100%",
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+            {src: 'plugin/markdown/marked.js'},
+            {src: 'plugin/markdown/markdown.js'},
+            {src: 'plugin/notes/notes.js', async: true},
+            {
+                src: 'plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            }
+        ]
+    });
+</script>
+</body>
+</html>

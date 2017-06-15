@@ -1,0 +1,15 @@
+/*p { text-align: left; }*/
+
+.quote {
+    text-align: right;
+    font-size: 0.7em !important;
+}
+
+.reveal blockquote {
+    margin: 0px;
+    width: 100%;
+}
+
+.codeSmall.codeSmall {
+    font-size: 0.5em !important;
+}
