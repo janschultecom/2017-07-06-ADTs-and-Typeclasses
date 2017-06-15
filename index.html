@@ -229,7 +229,7 @@ implicit val intSerialisable = new JsonSerialisable[Int] {
 import JsonSerialisable.ops._
 1.toJson // prints {"elem":1}
                 </code></pre>
-        </section>
+        </section><!--
         <section>
             <h1>More problems</h1>
         </section>
@@ -342,51 +342,43 @@ trait Order[A]{
             <h1>Order typeclass</h1>
             <iframe height="500" frameborder="0" style="width: 100%; overflow: hidden;"
                     src="https://embed.scalafiddle.io/embed?sfid=CWKqB3a/8&theme=dark"></iframe>
-        </section>
+        </section>-->
         <section>
             <h1>Show typeclass</h1>
-        </section>
-        <section>
-            <h1>Problem #3</h1>
-            <p>Get a textual representation of an object</p>
-            <p class="fragment">a.k.a <code>toString</code></p>
-        </section>
-        <section>
-            <h1>Problem #3</h1>
-            <img src="media/typeclasses-object.png">
-        </section>
-        <section>
-            <h1>Problem #3</h1>
-            <img src="media/typeclasses-toString.png">
-        </section>
-        <section>
-            <h1>Problem #3</h1>
-            <img src="media/typeclasses-json.png">
-        </section>
-        <section>
-            <h1>Problem #3</h1>
-            <p class="fragment">Do you know how <code>toString()</code> is used in your project?</p>
-            <ul>
-                <li class="fragment">Testing</li>
-                <pre><code class="scala fragment codeSmall"
-                           style="min-width: 600px;">Person(Name(Jan),Age(32))</code></pre>
-                <li class="fragment">Logging</li>
-                <pre><code class="shell fragment codeSmall">Jan[age=32]</code></pre>
-                <li class="fragment">Json Serialisation</li>
-            </ul>
-        </section>
-        <section>
-            <h1>Problem #3</h1>
-            <p>Do you know how <code>toString()</code> is used in your project?</p>
-            <ul>
-                <li class="fragment">Output Css classes (hmmkay)</li>
-                <li class="fragment">Create Javascript tracking code (seriously?)</li>
-                <li class="fragment">Create a checksum (dafuq???)</li>
-            </ul>
-        </section>
-        <section>
-            <h1>Show typeclass</h1>
-            <pre>
+            <section>
+                <p>Get a textual representation of an object</p>
+                <p class="fragment">a.k.a <code>toString</code></p>
+            </section>
+            <section>
+                <img src="media/typeclasses-object.png">
+            </section>
+            <section>
+                <img src="media/typeclasses-toString.png">
+            </section>
+            <section>
+                <img src="media/typeclasses-json.png">
+            </section>
+            <section>
+                <p class="fragment">Do you know how <code>toString()</code> is used in your project?</p>
+                <ul>
+                    <li class="fragment">Testing</li>
+                    <pre><code class="scala fragment codeSmall"
+                               style="min-width: 600px;">Person(Name(Jan),Age(32))</code></pre>
+                    <li class="fragment">Logging</li>
+                    <pre><code class="shell fragment codeSmall">Jan[age=32]</code></pre>
+                    <li class="fragment">Json Serialisation</li>
+                </ul>
+            </section>
+            <section>
+                <p>Do you know how <code>toString()</code> is used in your project?</p>
+                <ul>
+                    <li class="fragment">Output Css classes (hmmkay)</li>
+                    <li class="fragment">Create Javascript tracking code (seriously?)</li>
+                    <li class="fragment">Create a checksum (dafuq???)</li>
+                </ul>
+            </section>
+            <section>
+                <pre>
                 <code class="scala codeSmall" style="line-height: 1.3em" data-trim>
 /**
 * A type class to provide textual representation
@@ -394,13 +386,14 @@ trait Order[A]{
 trait Show[A] {
     def show(f: A): String
 }</code></pre>
-            <p class="quote"><em>Source <a href="http://typelevel.org/cats/typeclasses.html">Cats</a></em></p>
+                <p class="quote"><em>Source <a href="http://typelevel.org/cats/typeclasses.html">Cats</a></em></p>
+            </section>
+            <section>
+                <iframe class="fragment" height="500" frameborder="0" style="width: 100%; overflow: hidden;"
+                        src="https://embed.scalafiddle.io/embed?sfid=JAhnXq1/2&theme=dark"></iframe>
+            </section>
         </section>
-        <section>
-            <h1>Show typeclass</h1>
-            <iframe class="fragment" height="500" frameborder="0" style="width: 100%; overflow: hidden;"
-                    src="https://embed.scalafiddle.io/embed?sfid=JAhnXq1/2&theme=dark"></iframe>
-        </section>
+
         <section>
             <h1>Take aways</h1>
             <ul>
