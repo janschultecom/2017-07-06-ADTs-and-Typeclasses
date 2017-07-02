@@ -36,6 +36,17 @@
             <p>Jan Schulte</p>
         </section>
         <section>
+            <h1>About me</h1>
+            <p class="fragment">Freelance Scala consultant</p>
+            <p class="fragment">Currently Scala lead @ Douglas</p>
+            <span class="fragment">
+            <p><a href="https://www.meetup.com/de-DE/Scala-User-Group-Dusseldorf/">Scala UG Düsseldorf</a>
+                    (<a href="https://twitter.com/scaladus">@scaladus</a>)</p>
+            <p><a href="https://www.meetup.com/de-DE/Idris-User-Group-Dusseldorf/">Idris UG Düsseldorf</a>
+                    (<a href="https://twitter.com/idrisdus">@idrisdus</a>)</p>
+                </span>
+        </section>
+        <section>
             <h1>Algebraic Data Types</h1>
             <blockquote class="fragment" data-fragment-index="1"
                         cite="https://en.wikipedia.org/w/index.php?title=Algebraic_data_type&oldid=732511903">
@@ -54,35 +65,30 @@
                     <span class="fragment" data-fragment-index="2">or logical <em>or</em> types</span>
                 </p>
                 <p data-markdown class="fragment">Thinking in ***is a*** relationships</p>
-                <p class="fragment"><i>Let's use some pseudo code first...</i></p>
+
                 <p>
-                    <code class="haskell">
-                        <span class="haskell fragment" data-noescape>data TrafficLight</span>
-                        <span class="haskell fragment" data-noescape> = Green</span>
-                        <span class="haskell fragment" data-noescape> | Yellow</span>
-                        <span class="haskell fragment" data-noescape> | Red</span>
+                    <code>
+                        <span class="fragment" data-noescape><em>A</em> TrafficLight</span>
+                        <span class="fragment" data-noescape><em>is</em> Green</span>
+                        <span class="fragment" data-noescape><em>or</em> Yellow</span>
+                        <span class="fragment" data-noescape><em>or</em> Red</span>
                     </code>
                 </p>
             </section>
             <section>
-                <pre>
-                  <code class="haskell" data-trim>data Day =
-  Monday | Tuesday  | Wednesday | Thursday | Friday | Saturday | Sunday</code>
-                  </pre>
-            </section>
-            <section>
-                <pre>
-              <code class="haskell" data-trim data-noescape>data Computation =
-      Success | Failure
-              </code>
-              </pre>
+                    <code>
+                        <span data-noescape><em>A</em> Day <em>is</em> </span><br/>
+                        <span class="fragment" data-noescape>Monday <em>or</em> Tuesday <em>or</em> Wednesday <em>or</em></span><br/>
+                        <span class="fragment" data-noescape>Thursday <em>or</em> Friday <em>or</em> Saturday <em>or</em></span><br/>
+                        <span class="fragment" data-noescape>Sunday</span>
+                    </code>
             </section>
             <section>
                 <p class="fragment">So how do we represent that in Scala?</p>
                 <!--<pre><code class="haskell fragment codeSmall" data-trim>data TrafficLight = Green | Yellow | Red</code></pre>-->
                 <iframe class="fragment" height="400" frameborder="0"
                         style="width: 100%; overflow: hidden; font-size: 1.5em;"
-                        src="https://embed.scalafiddle.io/embed?sfid=G4tVaWh/4&theme=dark"></iframe>
+                        src="https://embed.scalafiddle.io/embed?sfid=G4tVaWh/1&theme=dark"></iframe>
             </section>
         </section>
 
@@ -95,25 +101,27 @@
                     <span class="fragment" data-fragment-index="2">or logical <em>and</em> types</span>
                 </p>
                 <p data-markdown class="fragment">Thinking in ***has a*** relationships</p>
-                <p data-markdown class="fragment">E.g. A Person ***has a*** name ***and*** an age</p>
                 <p>
-                    <code class="haskell">
-                        <span class="haskell fragment" data-noescape>data Person</span>
-                        <span class="haskell fragment" data-noescape> = String</span>
-                        <span class="haskell fragment" data-noescape> & Int</span>
+                    <code>
+                        <span class="fragment" data-noescape><em>A</em> Person</span>
+                        <span class="fragment" data-noescape><em>has</em> a Name</span>
+                        <span class="fragment" data-noescape><em>and </em> an Age</span>
                     </code>
                 </p>
             </section>
             <section>
-                <p data-markdown>A Point ***has *** an x ***and*** an y</p>
-                <pre>
-                <code class="haskell fragment" data-trim>data Point = Double & Double</code>
-            </pre>
+                <p>
+                    <code>
+                        <span class="fragment" data-noescape><em>A</em> Point</span>
+                        <span class="fragment" data-noescape><em>has</em> an X-coordinate</span>
+                        <span class="fragment" data-noescape><em>and </em> a Y-coordinate</span>
+                    </code>
+                </p>
             </section>
             <section>
                 <p class="fragment">And now in Scala...</p>
                 <iframe class="fragment" height="300" frameborder="0" style="width: 100%; overflow: hidden;"
-                        src="https://embed.scalafiddle.io/embed?sfid=kUUHo6T/9&theme=dark"></iframe>
+                        src="https://embed.scalafiddle.io/embed?sfid=kUUHo6T/4&theme=dark"></iframe>
             </section>
             <section>
                 <img src="media/adt-tuple-product.png">
@@ -122,9 +130,15 @@
                 <h2 class="fragment">Product type 2.0 aka Records</h2>
             </section>
             <section>
-                <p data-markdown>A Person ***has a*** name ***and*** an age</p>
+                <p>
+                    <code>
+                        <span data-noescape><em>A</em> Person</span>
+                        <span data-noescape><em>has</em> a Name</span>
+                        <span data-noescape><em>and </em> an Age</span>
+                    </code>
+                </p>
                 <iframe class="fragment" height="300" frameborder="0" style="width: 100%; overflow: hidden;"
-                        src="https://embed.scalafiddle.io/embed?sfid=ZS6kvhc/1&theme=dark"></iframe>
+                        src="https://embed.scalafiddle.io/embed?sfid=ZS6kvhc/0&theme=dark"></iframe>
             </section>
         </section>
 
@@ -150,62 +164,82 @@
             </section>
         </section>
 
-
         <section>
-            <h1>Take aways</h1>
-            <ul>
-                <li class="fragment">ADTs are simple</li>
-                <li class="fragment">ADTs are powerful</li>
-                <li class="fragment">Model your data as ADT!</li>
-            </ul>
+            <h1>Pro tips</h1>
+            <section>
+                <h2>#1 - Wrap Sum type in companion object</h2>
+                <iframe class="fragment" height="300" frameborder="0" style="width: 100%; overflow: hidden;"
+                        src="https://embed.scalafiddle.io/embed?sfid=G4tVaWh/6&theme=dark"></iframe>
+            </section>
+            <section>
+                <h2>#2 - Abstract similar Product types</h2>
+                <iframe class="fragment" height="300" frameborder="0" style="width: 100%; overflow: hidden;"
+                        src="https://embed.scalafiddle.io/embed?sfid=Fl13304/2&theme=dark"></iframe>
+            </section>
+            <section>
+                <h2>#3 - Parameterize type</h2>
+                <iframe class="fragment" height="300" frameborder="0" style="width: 100%; overflow: hidden;"
+                        src="https://embed.scalafiddle.io/embed?sfid=Fl13304/3&theme=dark"></iframe>
+            </section>
         </section>
 
+
         <section>
-            <h1>Typeclasses</h1>
+            <h1>Sneak peek Scala 3</h1>
+            <h3>(aka Dotty)</h3>
+            <section>
+                <iframe class="fragment" height="400" frameborder="0" style="width: 100%; overflow: scroll;"
+                        src="https://scastie.scala-lang.org/janschultecom/nBQUkrheQHiNHJd1I4I1xQ"></iframe>
+            </section>
         </section>
+
+
         <section>
             <h1>Typeclasses</h1>
             <p class="fragment">ADTs: Sum, Product, Recursive...</p>
-            <p class="fragment"><i class="fa fa-thumbs-o-up fa-3" aria-hidden="true"></i> Awesome!</p>
-            <p class="fragment">But how do we add functions to our ADTs?</p>
+            <p class="fragment"><i class="fa fa-thumbs-o-up fa-3" aria-hidden="true"></i> All nice and shiny...</p>
+            <p class="fragment">...but how do we add functionality to our ADTs?</p>
         </section>
-        <section>
-            <h1>Problem #1</h1>
-            <p class="fragment">Calculate the area of a shape</p>
-        </section>
-        <section>
-            <h1>Problem #1 - OO approach</h1>
-            <iframe height="500" frameborder="0" style="width: 100%; overflow: hidden;"
-                    src="https://embed.scalafiddle.io/embed?sfid=FclqCqq/3&theme=dark"></iframe>
-        </section>
-        <section>
-            <h1><a href="https://en.wikipedia.org/wiki/Expression_problem">Expression problem</a></h1>
-            <div>
-                <blockquote class="twitter-tweet tw-align-center" data-lang="en"><p lang="en" dir="ltr">Ok this was
-                    the moment you were waiting for.<a href="https://twitter.com/Lambda_World">@Lambda_World</a> <a
-                            href="https://twitter.com/PhilipWadler">@PhilipWadler</a> <a
-                            href="https://t.co/YIsxMYDVQE">pic.twitter.com/YIsxMYDVQE</a></p>&mdash; Luca Molteni
-                    (@volothamp) <a href="https://twitter.com/volothamp/status/782286233930203136">October 1,
-                        2016</a></blockquote>
-                <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-        </section>
+
+
         <section>
             <h1>Expression problem</h1>
-            <p class="fragment">Adding subtypes is easy</p>
-            <p class="fragment">Adding functions is difficult</p>
-            <p class="fragment">GoF Visitor Pattern! <span class="fragment">Don't you dare!</span></p>
+            <section>
+                <h2>Example</h2>
+                <p class="fragment">Calculate the area of a shape</p>
+            </section>
+            <section>
+                <iframe height="500" frameborder="0" style="width: 100%; overflow: hidden;"
+                        src="https://embed.scalafiddle.io/embed?sfid=FclqCqq/3&theme=dark"></iframe>
+            </section>
+            <section>
+                <div>
+                    <blockquote class="twitter-tweet tw-align-center" data-lang="en"><p lang="en" dir="ltr">Ok this was
+                        the moment you were waiting for.<a href="https://twitter.com/Lambda_World">@Lambda_World</a> <a
+                                href="https://twitter.com/PhilipWadler">@PhilipWadler</a> <a
+                                href="https://t.co/YIsxMYDVQE">pic.twitter.com/YIsxMYDVQE</a></p>&mdash; Luca Molteni
+                        (@volothamp) <a href="https://twitter.com/volothamp/status/782286233930203136">October 1,
+                            2016</a></blockquote>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </div>
+            </section>
+            <section>
+                <p class="fragment">Adding subtypes is easy</p>
+                <p class="fragment">Adding functions is difficult</p>
+                <p class="fragment">GoF Visitor Pattern! <span class="fragment">Don't you dare!</span></p>
+            </section>
         </section>
+
+
         <section>
             <h1>Typeclasses to the rescue</h1>
             <p class="fragment">Concept from FP languages (Haskell)</p>
             <p class="fragment">Separate functionality and data types</p>
-            <p class="fragment">Are not OO classes! (thx Valentin)</p>
         </section>
         <section>
             <h1>Area Typeclass</h1>
             <iframe height="500" frameborder="0" style="width: 100%; overflow: hidden;"
-                    src="https://embed.scalafiddle.io/embed?sfid=SNQlzdX/4&theme=dark"></iframe>
+                    src="https://embed.scalafiddle.io/embed?sfid=SNQlzdX/6&theme=dark"></iframe>
         </section>
         <section>
             <h1>Typeclasses - <a href="https://github.com/mpilquist/simulacrum">Simulacrum</a></h1>
@@ -216,18 +250,18 @@
             <h1>Typeclasses - <a href="https://github.com/mpilquist/simulacrum">Simulacrum</a></h1>
             <pre>
                 <code class="scala codeSmall" style="line-height: 1.3em;" data-noescape data-trim>
-import simulacrum._
+<span class="fragment" data-fragment-index="1">import simulacrum._</span>
 
-@typeclass trait JsonSerialisable[A] {
-  @op("toJson") def serialise(elem:A): String
-}
+<span class="fragment" data-fragment-index="2">@typeclass </span><span>trait JsonSerialisable[A] {
+<span class="fragment" data-fragment-index="3">@op("json") </span>def serialise(elem:A): String
+}</span>
 
-implicit val intSerialisable = new JsonSerialisable[Int] {
+<span class="fragment" data-fragment-index="4">implicit val intSerialisable = new JsonSerialisable[Int] {
   override def serialise(elem:Int) = "{\"elem\":"+ elem + "}"
-}
+}</span>
 
-import JsonSerialisable.ops._
-1.toJson // prints {"elem":1}
+<span class="fragment" data-fragment-index="5">import JsonSerialisable.ops._</span>
+<span class="fragment" data-fragment-index="6">1.json // prints {"elem":1}</span>
                 </code></pre>
         </section><!--
         <section>
@@ -395,14 +429,53 @@ trait Show[A] {
         </section>
 
         <section>
+            <h1>Basic guideline</h1>
+            <section>
+                <h2>#1 - Use typeclasses</h2>
+                <span class="fragment">
+                <p>...for generic functionality not specific to your data type</p>
+                <pre>
+                <code class="scala codeSmall fragment" style="line-height: 1.3em" data-trim>
+@typeclass trait Json[E] {
+    @op("json") def toJson(elem: E): String
+}</code></pre>
+                </span>
+            </section>
+            <section>
+                <h2>#2 - Use structural recursion</h2>
+                <p class="fragment">...for basic data manipulation</p>
+                <pre>
+                <code class="scala codeSmall fragment" style="line-height: 1.3em" data-trim>
+trait Shape {
+    def map(f: A):Shape = this match {
+        case class Rectangle(w,h) => Rectangle(f(w),f(h))
+        case class Circle(r) => Circle(f(r))
+    }
+}</code></pre>
+            </section>
+            <section>
+                <h2>#3 - Use a helper object</h2>
+                <span class="fragment">
+                <p>...for one-time functionality specific to your data type</p>
+                <pre>
+                <code class="scala codeSmall" style="line-height: 1.3em" data-trim>
+object Calculator {
+
+  def deriveEasterDiscount(price: Price): Discount = ???
+
+}</code></pre>
+                    </span>
+            </section>
+        </section>
+
+        <section>
             <h1>Take aways</h1>
             <ul>
-                <li class="fragment">Typeclasses are amazing</li>
-                <li class="fragment">TCs add functionality to your ADTs</li>
-                <li class="fragment">TCs keep your ADT clean</li>
-                <li class="fragment">Use simulacrum to avoid boilerplate</li>
-                <li class="fragment">TC instances to support different types</li>
-                <li class="fragment">TC instances to support different implementations</li>
+                <li class="fragment">ADTs are simple yet powerful.</li>
+                <li class="fragment">So go for it! Model your data as ADTs...</li>
+                <li class="fragment">...and be dumb! Think in <em>is-a</em> and <em>has-a</em> relationships.</li>
+                <li class="fragment">...but keep your ADTs clean...</li>
+                <li class="fragment">...and use Typeclasses to add functionality!</li>
             </ul>
         </section>
         <section>
@@ -412,7 +485,7 @@ trait Show[A] {
             <p><a href="https://github.com/janschultecom"><i class="fa fa-github-alt fa-3" aria-hidden="true"></i>
                 github.com/janschultecom</a></p>
             <p style="font-size: 22px">
-                Presentation Link: <a href="http://janschulte.com/2017-07-06-ADTs-and-Typeclasses">janschulte.com/2016-10-12-adts-typeclasses-scala</a>
+                Presentation Link: <a href="http://janschulte.com/2017-07-06-ADTs-and-Typeclasses">janschulte.com/2017-07-06-ADTs-and-Typeclasses</a>
             </p>
         </section>
     </div>
