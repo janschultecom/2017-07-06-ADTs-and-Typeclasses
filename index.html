@@ -76,12 +76,14 @@
                 </p>
             </section>
             <section>
-                    <code>
-                        <span data-noescape><em>A</em> Day <em>is</em> </span><br/>
-                        <span class="fragment" data-noescape>Monday <em>or</em> Tuesday <em>or</em> Wednesday <em>or</em></span><br/>
-                        <span class="fragment" data-noescape>Thursday <em>or</em> Friday <em>or</em> Saturday <em>or</em></span><br/>
-                        <span class="fragment" data-noescape>Sunday</span>
-                    </code>
+                <code>
+                    <span data-noescape><em>A</em> Day <em>is</em> </span><br/>
+                    <span class="fragment"
+                          data-noescape>Monday <em>or</em> Tuesday <em>or</em> Wednesday <em>or</em></span><br/>
+                    <span class="fragment"
+                          data-noescape>Thursday <em>or</em> Friday <em>or</em> Saturday <em>or</em></span><br/>
+                    <span class="fragment" data-noescape>Sunday</span>
+                </code>
             </section>
             <section>
                 <p class="fragment">So how do we represent that in Scala?</p>
@@ -155,12 +157,24 @@
                 <iframe class="fragment" height="400" frameborder="0" style="width: 100%; overflow: hidden;"
                         src="https://embed.scalafiddle.io/embed?sfid=EL2ObHV/3&theme=dark"></iframe>
             </section>
+        </section>
+
+        <section>
+            <h1>Recursive types</h1>
             <section>
-                <h2>Recursive types</h2>
-                <p class="fragment" data-markdown="">A List ***is*** either an empty list ***or*** a construction of a
-                    head ***and*** a tail</p>
+                <img style="height: 300px" src="media/screenshot-menu-douglas.png">
+                <p class="quote"><em>Source <a href="http://typelevel.org/cats/typeclasses.html">Screenshot
+                    www.douglas.es (2017-07-05) </a></em></p>
+            </section>
+            <section>
+                <p class="fragment" data-markdown="">A page menu ***is*** either a menu item that ***has*** a title</p>
+                <p class="fragment" data-markdown="">***or*** a menu category that ***has*** a title and 1..* submenus</p>
                 <iframe class="fragment" height="300" frameborder="0" style="width: 100%; overflow: hidden;"
-                        src="https://embed.scalafiddle.io/embed?sfid=KVzVHVC/2&theme=dark"></iframe>
+                        src="https://embed.scalafiddle.io/embed?sfid=aBtYv05/0&theme=dark"></iframe>
+            </section>
+            <section>
+                <iframe height="300" frameborder="0" style="width: 100%; overflow: hidden;"
+                        src="https://embed.scalafiddle.io/embed?sfid=aBtYv05/2&theme=dark"></iframe>
             </section>
         </section>
 
@@ -210,7 +224,7 @@
             </section>
             <section>
                 <iframe height="500" frameborder="0" style="width: 100%; overflow: hidden;"
-                        src="https://embed.scalafiddle.io/embed?sfid=FclqCqq/3&theme=dark"></iframe>
+                        src="https://embed.scalafiddle.io/embed?sfid=FclqCqq/4&theme=dark"></iframe>
             </section>
             <section>
                 <div>
@@ -412,8 +426,9 @@ trait Order[A]{
                 </ul>
             </section>
             <section>
+                <p class="fragment"><a href="http://typelevel.org/">Typelevel</a> <a href="http://typelevel.org/cats/">Cats</a> library
                 <pre>
-                <code class="scala codeSmall" style="line-height: 1.3em" data-trim>
+                <code class="fragment scala codeSmall" style="line-height: 1.3em" data-trim>
 /**
 * A type class to provide textual representation
 */
@@ -429,7 +444,7 @@ trait Show[A] {
         </section>
 
         <section>
-            <h1>Basic guideline</h1>
+            <h1>Opinionated guideline</h1>
             <section>
                 <h2>#1 - Use typeclasses</h2>
                 <span class="fragment">
