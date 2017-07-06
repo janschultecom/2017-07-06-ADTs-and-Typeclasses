@@ -92,6 +92,11 @@
                         style="width: 100%; overflow: hidden; font-size: 1.5em;"
                         src="https://embed.scalafiddle.io/embed?sfid=G4tVaWh/1&theme=dark"></iframe>
             </section>
+            <section>
+                <iframe class="fragment" height="400" frameborder="0"
+                        style="width: 100%; overflow: hidden; font-size: 1.5em;"
+                        src="https://embed.scalafiddle.io/embed?sfid=G4tVaWh/4&theme=dark"></iframe>
+            </section>
         </section>
 
 
@@ -126,6 +131,10 @@
                         src="https://embed.scalafiddle.io/embed?sfid=kUUHo6T/4&theme=dark"></iframe>
             </section>
             <section>
+                <iframe class="fragment" height="300" frameborder="0" style="width: 100%; overflow: hidden;"
+                        src="https://embed.scalafiddle.io/embed?sfid=kUUHo6T/9&theme=dark"></iframe>
+            </section>
+            <section>
                 <img src="media/adt-tuple-product.png">
             </section>
             <section>
@@ -141,6 +150,8 @@
                 </p>
                 <iframe class="fragment" height="300" frameborder="0" style="width: 100%; overflow: hidden;"
                         src="https://embed.scalafiddle.io/embed?sfid=ZS6kvhc/0&theme=dark"></iframe>
+                <iframe class="fragment" height="300" frameborder="0" style="width: 100%; overflow: hidden;"
+                        src="https://embed.scalafiddle.io/embed?sfid=ZS6kvhc/1&theme=dark"></iframe>
             </section>
         </section>
 
@@ -150,10 +161,18 @@
                 <p data-markdown class="fragment">A result of a computation ***is*** empty ***or*** it just ***has*** a
                     return value</p>
                 <iframe class="fragment" height="400" frameborder="0" style="width: 100%; overflow: hidden;"
+                        src="https://embed.scalafiddle.io/embed?sfid=ZYT9Tx7/4&theme=dark"></iframe>
+            </section>
+            <section>
+                <iframe class="fragment" height="400" frameborder="0" style="width: 100%; overflow: hidden;"
                         src="https://embed.scalafiddle.io/embed?sfid=ZYT9Tx7/3&theme=dark"></iframe>
             </section>
             <section>
                 <p data-markdown class="fragment">A result of a computation ***is*** either a String ***or*** an Int</p>
+                <iframe class="fragment" height="400" frameborder="0" style="width: 100%; overflow: hidden;"
+                        src="https://embed.scalafiddle.io/embed?sfid=EL2ObHV/1&theme=dark"></iframe>
+            </section>
+            <section>
                 <iframe class="fragment" height="400" frameborder="0" style="width: 100%; overflow: hidden;"
                         src="https://embed.scalafiddle.io/embed?sfid=EL2ObHV/3&theme=dark"></iframe>
             </section>
@@ -168,7 +187,8 @@
             </section>
             <section>
                 <p class="fragment" data-markdown="">A page menu ***is*** either a menu item that ***has*** a title</p>
-                <p class="fragment" data-markdown="">***or*** a menu category that ***has*** a title and 1..* submenus</p>
+                <p class="fragment" data-markdown="">***or*** a menu category that ***has*** a title and 1..*
+                    submenus</p>
                 <iframe class="fragment" height="300" frameborder="0" style="width: 100%; overflow: hidden;"
                         src="https://embed.scalafiddle.io/embed?sfid=aBtYv05/0&theme=dark"></iframe>
             </section>
@@ -227,6 +247,10 @@
                         src="https://embed.scalafiddle.io/embed?sfid=FclqCqq/4&theme=dark"></iframe>
             </section>
             <section>
+                <iframe height="500" frameborder="0" style="width: 100%; overflow: hidden;"
+                        src="https://embed.scalafiddle.io/embed?sfid=FclqCqq/5&theme=dark"></iframe>
+            </section>
+            <section>
                 <div>
                     <blockquote class="twitter-tweet tw-align-center" data-lang="en"><p lang="en" dir="ltr">Ok this was
                         the moment you were waiting for.<a href="https://twitter.com/Lambda_World">@Lambda_World</a> <a
@@ -252,17 +276,23 @@
         </section>
         <section>
             <h1>Area Typeclass</h1>
-            <iframe height="500" frameborder="0" style="width: 100%; overflow: hidden;"
-                    src="https://embed.scalafiddle.io/embed?sfid=SNQlzdX/6&theme=dark"></iframe>
+            <section>
+                <iframe height="500" frameborder="0" style="width: 100%; overflow: hidden;"
+                        src="https://embed.scalafiddle.io/embed?sfid=SNQlzdX/6&theme=dark"></iframe>
+            </section>
+            <section>
+                <iframe height="500" frameborder="0" style="width: 100%; overflow: hidden;"
+                        src="https://embed.scalafiddle.io/embed?sfid=SNQlzdX/4&theme=dark"></iframe>
+            </section>
         </section>
         <section>
             <h1>Typeclasses - <a href="https://github.com/mpilquist/simulacrum">Simulacrum</a></h1>
-            <p class="fragment">Compiler plugin by <a href="https://github.com/mpilquist">Michael Pilquist</a></p>
-            <p class="fragment">Reduce required typeclass boilerplate</p>
-        </section>
-        <section>
-            <h1>Typeclasses - <a href="https://github.com/mpilquist/simulacrum">Simulacrum</a></h1>
-            <pre>
+            <section>
+                <p class="fragment">Compiler plugin by <a href="https://github.com/mpilquist">Michael Pilquist</a></p>
+                <p class="fragment">Reduce required typeclass boilerplate</p>
+            </section>
+            <section>
+                <pre>
                 <code class="scala codeSmall" style="line-height: 1.3em;" data-noescape data-trim>
 <span class="fragment" data-fragment-index="1">import simulacrum._</span>
 
@@ -277,6 +307,7 @@
 <span class="fragment" data-fragment-index="5">import JsonSerialisable.ops._</span>
 <span class="fragment" data-fragment-index="6">1.json // prints {"elem":1}</span>
                 </code></pre>
+            </section>
         </section><!--
         <section>
             <h1>More problems</h1>
@@ -426,7 +457,8 @@ trait Order[A]{
                 </ul>
             </section>
             <section>
-                <p class="fragment"><a href="http://typelevel.org/">Typelevel</a> <a href="http://typelevel.org/cats/">Cats</a> library
+                <p class="fragment"><a href="http://typelevel.org/">Typelevel</a> <a href="http://typelevel.org/cats/">Cats</a>
+                    library
                 <pre>
                 <code class="fragment scala codeSmall" style="line-height: 1.3em" data-trim>
 /**
@@ -436,6 +468,10 @@ trait Show[A] {
     def show(f: A): String
 }</code></pre>
                 <p class="quote"><em>Source <a href="http://typelevel.org/cats/typeclasses.html">Cats</a></em></p>
+            </section>
+            <section>
+                <iframe class="fragment" height="500" frameborder="0" style="width: 100%; overflow: hidden;"
+                        src="https://embed.scalafiddle.io/embed?sfid=JAhnXq1/3&theme=dark"></iframe>
             </section>
             <section>
                 <iframe class="fragment" height="500" frameborder="0" style="width: 100%; overflow: hidden;"
@@ -493,6 +529,7 @@ object Calculator {
                 <li class="fragment">...and use Typeclasses to add functionality!</li>
             </ul>
         </section>
+
         <section>
             <h1>Thank you!</h1>
             <p><a href="https://twitter.com/janschultecom"><i class="fa fa-twitter fa-3" aria-hidden="true"></i>
