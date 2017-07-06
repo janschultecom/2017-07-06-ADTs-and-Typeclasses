@@ -88,6 +88,7 @@ case class MenuCategory(name:String, subMenu:Menu*)
 
 val perfumes = MenuCategory("perfumes", MenuItem("Men"), MenuItem("Women"))
 println(perfumes)
+```
 
 # Example 7 - Pro Tip #2
 ```scala
