@@ -2,5 +2,6 @@
 ### Scala template
 *.class
 *.log
-
+*.pdf
+*.docx  
 .idea
